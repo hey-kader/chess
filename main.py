@@ -18,7 +18,7 @@ class Board ():
         temp = []
         for i in range (0, 512, 64):
             for j in range (0, 512, 64):
-                temp.append(pygame.Rect(i, j+64, 64, 64))
+                temp.append(pygame.Rect(i, j, 64, 64))
         return temp
 
     def draw_board (self):
@@ -32,7 +32,6 @@ class Board ():
             color = white if color == black else black   
             if count % 8 == 0:
                 color = white if color == black else black   
-                print ('hi')
             pygame.draw.rect(self.screen, color, square)
             count += 1
 
