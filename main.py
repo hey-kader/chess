@@ -35,6 +35,11 @@ class Board ():
             pygame.draw.rect(self.screen, color, square)
             count += 1
 
+    def load_board_black (self):
+        self.draw_board()
+        bp = pygame.image.load('resources/black_pawn.png')
+        for i in range (0, 512, 64):
+            self.screen.blit(bp, (64,i))
 
 def main ():
 
@@ -45,7 +50,7 @@ def main ():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-        board.draw_board()
+        board.load_board_black()
         pygame.display.flip()
     
 
