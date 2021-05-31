@@ -24,7 +24,7 @@ class Board ():
     def draw_board (self):
 
         white = (255, 255, 255)
-        black = (0, 0, 0)
+        black = (0, 50, 20)
 
         count = 0
         color = None 
