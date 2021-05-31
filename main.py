@@ -35,6 +35,35 @@ class Board ():
             pygame.draw.rect(self.screen, color, square)
             count += 1
 
+    def load_board_white (self):
+        wp = pygame.image.load('resources/white_pawn.png')
+
+        wr = pygame.image.load('resources/white_rook.png')
+        wh = pygame.image.load('resources/white_horse.png')
+        wb = pygame.image.load('resources/white_bishop.png')
+
+        wq = pygame.image.load('resources/white_queen.png')
+        wk = pygame.image.load('resources/white_king.png')
+
+        for i in range (0, 512, 64):
+            self.screen.blit(wp,(384,i))
+
+        # draw rooks
+        self.screen.blit(wr, (448, 0))
+        self.screen.blit(wr, (448, 448))
+
+        # draw horses
+        self.screen.blit(wh, (448,64))
+        self.screen.blit(wh, (448,384))
+
+        # draw bishops 
+        self.screen.blit (wb, (448, 128))
+        self.screen.blit (wb, (448, 320))
+
+        # draw queen and king
+        self.screen.blit (wk, (448, 192))
+        self.screen.blit (wq, (448, 256))
+
     def load_board_black (self):
         self.draw_board()
 
@@ -68,6 +97,7 @@ class Board ():
         self.screen.blit(bq, (0, 256))
 
 
+
 def main ():
 
     board = Board ()
@@ -78,6 +108,7 @@ def main ():
             if event.type == pygame.QUIT:
                 running = False
         board.load_board_black()
+        board.load_board_white()
         pygame.display.flip()
     
 
