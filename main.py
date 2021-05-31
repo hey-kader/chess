@@ -18,47 +18,35 @@ class Board ():
         temp = []
         for i in range (0, 512, 64):
             for j in range (0, 512, 64):
-                temp.append(pygame.Rect( i,  j+64, 64, 64))
+                temp.append(pygame.Rect(i, j+64, 64, 64))
         return temp
 
     def draw_board (self):
 
         white = (255, 255, 255)
         black = (0, 0, 0)
-        color = white
-
-        def change_color ():
-            if color == white:
-                return black
-
-            else:
-                return white
-
 
         count = 0
-         
+        color = None 
         for square in self.make_board():
-            
-            if count == 7:
-                color = change_color () 
-                count = 0
-            else:
-                count += 1    
-                        
-            
+            color = white if color == black else black   
+            if count % 8 == 0:
+                color = white if color == black else black   
+                print ('hi')
             pygame.draw.rect(self.screen, color, square)
+            count += 1
 
 
 def main ():
 
     board = Board ()
-
     running = True
+
     while running:
-        board.draw_board()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        board.draw_board()
         pygame.display.flip()
     
 
