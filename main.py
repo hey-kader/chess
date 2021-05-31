@@ -37,9 +37,36 @@ class Board ():
 
     def load_board_black (self):
         self.draw_board()
+
         bp = pygame.image.load('resources/black_pawn.png')
+
+        br = pygame.image.load('resources/black_rook.png')
+        bh = pygame.image.load('resources/black_horse.png')
+        bb = pygame.image.load('resources/black_bishop.png')
+
+        bq = pygame.image.load('resources/black_queen.png')
+        bk = pygame.image.load('resources/black_king.png')
+
+        # draw pawns
         for i in range (0, 512, 64):
             self.screen.blit(bp, (64,i))
+        
+        # draw rooks
+        self.screen.blit(br, (0,0))
+        self.screen.blit(br, (0,448))
+
+        # draw horses
+        self.screen.blit(bh, (0,64))
+        self.screen.blit(bh, (0,384))
+
+        # draw bishops
+        self.screen.blit(bb, (0, 128))
+        self.screen.blit(bb, (0, 320))
+
+        # draw king & queen
+        self.screen.blit(bk, (0, 192))
+        self.screen.blit(bq, (0, 256))
+
 
 def main ():
 
