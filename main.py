@@ -1,5 +1,33 @@
 import pygame
 
+class Piece ():
+
+    def __init__(self, img ,x, y):
+        self.x = x
+        self.y = y
+        self.img = img
+        self.clicked = False
+        self.origin = (self.x, self.y)
+
+    def draw (self, screen):
+        screen.blip(self.img, (self.x, self.y))
+
+    def move (x, y)
+        self.x = x
+        self.y = y
+
+    def capture (self, opp_x, opp_y):
+        self.x = opp_x
+        self.y = opp_y
+
+class Pawn (Piece):
+
+    def __init__(self, img, x, y):
+        super().__init__(self, img, x, y)
+    
+    
+        
+
 class Board ():
 
     def __init__(self):
@@ -28,7 +56,9 @@ class Board ():
 
         count = 0
         color = None 
-        for square in self.make_board():
+        self.squares = self.make_board()
+
+        for square in squares:
             color = white if color == black else black   
             if count % 8 == 0:
                 color = white if color == black else black   
