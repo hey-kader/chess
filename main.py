@@ -75,27 +75,32 @@ class Board ():
         wq = pygame.image.load('resources/white_queen.png')
         wk = pygame.image.load('resources/white_king.png')
 
+        white_map = []
+
         for i in range (0, 512, 64):
-            self.screen.blit(wp,(384,i))
+            white_map.append((wp,(384,i)))
 
         # draw rooks
-        self.screen.blit(wr, (448, 0))
-        self.screen.blit(wr, (448, 448))
+        white_map.append((wr, (448, 0)))
+        white_map.append((wr, (448, 448)))
 
         # draw horses
-        self.screen.blit(wh, (448,64))
-        self.screen.blit(wh, (448,384))
+        white_map.append((wh, (448,64)))
+        white_map.append((wh, (448,384)))
 
         # draw bishops 
-        self.screen.blit (wb, (448, 128))
-        self.screen.blit (wb, (448, 320))
+        white_map.append((wb, (448, 128)))
+        white_map.append((wb, (448, 320)))
 
         # draw queen and king
-        self.screen.blit (wk, (448, 192))
-        self.screen.blit (wq, (448, 256))
+        white_map.append((wk, (448, 192)))
+        white_map.append((wq, (448, 256)))
+        
+        return white_map
 
     def load_board_black (self):
         self.draw_board()
+        black_map = []
 
         bp = pygame.image.load('resources/black_pawn.png')
 
@@ -108,25 +113,29 @@ class Board ():
 
         # draw pawns
         for i in range (0, 512, 64):
-            self.screen.blit(bp, (64,i))
+            black_map.append((bp, (64, i)))
         
         # draw rooks
-        self.screen.blit(br, (0,0))
-        self.screen.blit(br, (0,448))
+        black_map.append((br, (0,0)))
+        black_map.append((br, (0,448)))
 
         # draw horses
-        self.screen.blit(bh, (0,64))
-        self.screen.blit(bh, (0,384))
+        black_map.append((bh, (0, 64)))
+        black_map.append((bh, (0, 384)))
 
         # draw bishops
-        self.screen.blit(bb, (0, 128))
-        self.screen.blit(bb, (0, 320))
+        black_map.append((bb, (0, 128)))
+        black_map.append((bb, (0, 320)))
 
         # draw king & queen
-        self.screen.blit(bk, (0, 192))
-        self.screen.blit(bq, (0, 256))
+        black_map.append((bk, (0, 192)))
+        black_map.append((bq, (0, 256)))
 
+        return black_map
 
+def draw (team, screen):
+    for piece in team:
+        screen.blit(piece[0], piece[1])
 
 def main ():
 
@@ -136,17 +145,23 @@ def main ():
 
     while running:
         for event in pygame.event.get():
-            board.load_board_black()
-            board.load_board_white()
+
+            black = board.load_board_black()
+            white = board.load_board_white()
 
             if event.type == pygame.QUIT:
                 running = False
             if  pygame.MOUSEBUTTONDOWN:
-                #for s in squares: if locate is in s, s is red 
                 locate = pygame.mouse.get_pos()
                 for square in board.squares:
                     if square.collidepoint(locate):
                         pygame.draw.rect(board.screen, (255,50,0), square)
+                    # if user clicks mouse
+                    # change the color of square to blue
+
+                draw (black, board.screen)
+                draw (white, board.screen)
+                #record open spots
 
             pygame.display.flip()
     
