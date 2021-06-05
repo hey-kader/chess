@@ -47,7 +47,7 @@ class Board ():
         for i in range (0, 512, 64):
             for j in range (0, 512, 64):
                 temp.append(pygame.Rect(i, j, 64, 64))
-        return temp
+        self.squares = temp
 
     def draw_board (self):
 
@@ -56,7 +56,7 @@ class Board ():
 
         count = 0
         color = None 
-        self.squares = self.make_board()
+        self.make_board()
 
         for square in self.squares:
             color = white if color == black else black   
@@ -133,13 +133,22 @@ def main ():
     board = Board ()
     running = True
 
+
     while running:
         for event in pygame.event.get():
+            board.load_board_black()
+            board.load_board_white()
+
             if event.type == pygame.QUIT:
                 running = False
-        board.load_board_black()
-        board.load_board_white()
-        pygame.display.flip()
+            if  pygame.MOUSEBUTTONDOWN:
+                #for s in squares: if locate is in s, s is red 
+                locate = pygame.mouse.get_pos()
+                for square in board.squares:
+                    if square.collidepoint(locate):
+                        pygame.draw.rect(board.screen, (255,50,0), square)
+
+            pygame.display.flip()
     
 
 if __name__ == '__main__':
