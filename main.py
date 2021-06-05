@@ -12,7 +12,7 @@ class Piece ():
     def draw (self, screen):
         screen.blip(self.img, (self.x, self.y))
 
-    def move (x, y)
+    def move (x, y):
         self.x = x
         self.y = y
 
@@ -58,7 +58,7 @@ class Board ():
         color = None 
         self.squares = self.make_board()
 
-        for square in squares:
+        for square in self.squares:
             color = white if color == black else black   
             if count % 8 == 0:
                 color = white if color == black else black   
